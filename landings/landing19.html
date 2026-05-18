@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carmen de la Candelaria | Casa Rural en el Albayzín, Granada</title>
+    <meta name="description" content="Carmen de la Candelaria: casa rural con 4 dormitorios y 4 baños en el corazón del Albayzín, Patrimonio de la Humanidad. Piscina, jacuzzi, terraza con vistas a la Alhambra.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="nav-brand">
+            <span class="nav-logo">CC</span>
+            <span class="nav-title">Carmen de la Candelaria</span>
+        </div>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu" id="nav-menu" role="menubar">
+            <li role="none"><a href="#inicio" class="nav-link" role="menuitem">Inicio</a></li>
+            <li role="none"><a href="#dormitorios" class="nav-link" role="menuitem">4 Dormitorios</a></li>
+            <li role="none"><a href="#reservar" class="nav-link" role="menuitem">Reservar</a></li>
+            <li role="none"><a href="#galeria" class="nav-link" role="menuitem">Galería</a></li>
+            <li role="none"><a href="#zona" class="nav-link" role="menuitem">La Zona</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- ============================================
+             HERO CON SLIDESHOW DE IMÁGENES
+             ============================================ -->
+        <section id="inicio" class="hero" aria-label="Bienvenida">
+            <div class="hero-slideshow" aria-hidden="true">
+                <div class="slide active" style="background-image: url('imagenescandelaria/Candelaria1.webp')"></div>
+                <div class="slide" style="background-image: url('imagenescandelaria/Candelaria2.webp')"></div>
+                <div class="slide" style="background-image: url('imagenescandelaria/Candelaria3.webp')"></div>
+                <div class="slide" style="background-image: url('imagenescandelaria/Candelaria4.webp')"></div>
+                <div class="slide" style="background-image: url('imagenescandelaria/Candelaria5.webp')"></div>
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-badge" data-animate="fade-up">
+                    <span>Albayzín · Patrimonio UNESCO · Granada</span>
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                    Carmen de la<br>
+                    <em>Candelaria</em>
+                </h1>
+                <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
+                    Casa rural con 4 dormitorios y 4 baños privados<br>
+                    en el corazón del Albayzín, frente a la Alhambra.<br>
+                    Piscina, jacuzzi y terraza con vistas a Granada.
+                </p>
+                <div class="hero-cta" data-animate="fade-up" data-delay="300">
+                    <a href="#reservar" class="btn btn-primary">Reserva tu estancia</a>
+                    <a href="#dormitorios" class="btn btn-outline">Ver dormitorios</a>
+                </div>
+                
+                <!-- Indicadores del slideshow -->
+                <div class="slide-indicators" aria-label="Controles del slideshow">
+                    <button class="indicator active" aria-label="Imagen 1" data-slide="0"></button>
+                    <button class="indicator" aria-label="Imagen 2" data-slide="1"></button>
+                    <button class="indicator" aria-label="Imagen 3" data-slide="2"></button>
+                    <button class="indicator" aria-label="Imagen 4" data-slide="3"></button>
+                    <button class="indicator" aria-label="Imagen 5" data-slide="4"></button>
+                </div>
+            </div>
+            
+            <div class="hero-scroll" data-animate="fade-in" data-delay="800">
+                <span>Desplaza para explorar</span>
+                <div class="scroll-indicator">
+                    <div class="scroll-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             4 DORMITORIOS (GALERÍA ARRIBA + DESCRIPCIÓN ABAJO)
+             ============================================ -->
+        <section id="dormitorios" class="section rooms-section" aria-labelledby="rooms-title">
+            <div class="container">
+                <div class="section-header" data-animate="fade-up">
+                    <span class="section-tag">Capacidad para 8 personas</span>
+                    <h2 id="rooms-title" class="section-title">4 Dormitorios, <em>4 Baños Privados</em></h2>
+                </div>
+
+                <!-- DORMITORIO 1 -->
+                <article class="room-block" data-animate="fade-up">
+                    <div class="room-gallery">
+                        <div class="room-img-main">
+                            <img src="imagenescandelaria/dormitorio1-1.webp" alt="Dormitorio 1 - Cama doble grande con vistas al patio" loading="lazy">
+                        </div>
+                        <div class="room-img-thumbs">
+                            <img src="imagenescandelaria/dormitorio1-2.webp" alt="Detalle del baño privado del dormitorio 1" loading="lazy">
+                            <img src="imagenescandelaria/dormitorio1-3.webp" alt="Armario y zona de almacenamiento del dormitorio 1" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <div class="room-header">
+                            <h3>Dormitorio 1 <span class="room-tag">Cama doble grande</span></h3>
+                            <div class="room-capacity">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <span>2 personas</span>
+                            </div>
+                        </div>
+                        <p>Habitación principal con cama doble grande, baño privado en suite, TV de pantalla plana, armario empotrado y vistas al patio andaluz. Ropa de cama y toallas de alta calidad incluidas.</p>
+                        <ul class="room-amenities">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12V8l-4-4H8L4 8v4"/></svg>
+                                <span>1 cama doble grande (150cm)</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                <span>Baño privado con ducha</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                <span>TV de pantalla plana</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                                <span>Ropa de cama y toallas</span>
+                            </li>
+                        </ul>
+                        <a href="#reservar" class="btn btn-primary">Reservar este dormitorio</a>
+                    </div>
+                </article>
+
+                <!-- DORMITORIO 2 -->
+                <article class="room-block" data-animate="fade-up">
+                    <div class="room-gallery">
+                        <div class="room-img-main">
+                            <img src="imagenescandelaria/dormitorio2-1.webp" alt="Dormitorio 2 - Dos camas individuales con decoración andaluza" loading="lazy">
+                        </div>
+                        <div class="room-img-thumbs">
+                            <img src="imagenescandelaria/dormitorio2-2.webp" alt="Baño privado del dormitorio 2" loading="lazy">
+                            <img src="imagenescandelaria/dormitorio2-3.webp" alt="Ventana con vistas del dormitorio 2" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <div class="room-header">
+                            <h3>Dormitorio 2 <span class="room-tag">2 camas individuales</span></h3>
+                            <div class="room-capacity">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <span>2 personas</span>
+                            </div>
+                        </div>
+                        <p>Habitación ideal para amigos o hermanos con dos camas individuales, baño privado completo, TV y escritorio. Decoración tradicional andaluza con textiles artesanales.</p>
+                        <ul class="room-amenities">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12V8l-4-4H8L4 8v4M4 12h16"/></svg>
+                                <span>2 camas individuales (90cm)</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                <span>Baño privado con ducha</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                <span>TV de pantalla plana</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                                <span>Ropa de cama y toallas</span>
+                            </li>
+                        </ul>
+                        <a href="#reservar" class="btn btn-primary">Reservar este dormitorio</a>
+                    </div>
+                </article>
+
+                <!-- DORMITORIO 3 -->
+                <article class="room-block" data-animate="fade-up">
+                    <div class="room-gallery">
+                        <div class="room-img-main">
+                            <img src="imagenescandelaria/dormitorio3-1.webp" alt="Dormitorio 3 - Cama doble grande con cabecero artesanal" loading="lazy">
+                        </div>
+                        <div class="room-img-thumbs">
+                            <img src="imagenescandelaria/dormitorio3-2.webp" alt="Detalle del baño del dormitorio 3" loading="lazy">
+                            <img src="imagenescandelaria/dormitorio3-3.webp" alt="Zona de lectura del dormitorio 3" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <div class="room-header">
+                            <h3>Dormitorio 3 <span class="room-tag">Cama doble grande</span></h3>
+                            <div class="room-capacity">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <span>2 personas</span>
+                            </div>
+                        </div>
+                        <p>Acogedora habitación con cama doble grande, baño privado con azulejos artesanales, armario y vistas a las callejuelas del Albayzín. Perfecta para parejas.</p>
+                        <ul class="room-amenities">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12V8l-4-4H8L4 8v4"/></svg>
+                                <span>1 cama doble grande (150cm)</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                <span>Baño privado con ducha</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                <span>TV de pantalla plana</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                                <span>Ropa de cama y toallas</span>
+                            </li>
+                        </ul>
+                        <a href="#reservar" class="btn btn-primary">Reservar este dormitorio</a>
+                    </div>
+                </article>
+
+                <!-- DORMITORIO 4 -->
+                <article class="room-block" data-animate="fade-up">
+                    <div class="room-gallery">
+                        <div class="room-img-main">
+                            <img src="imagenescandelaria/dormitorio4-1.webp" alt="Dormitorio 4 - Cama doble grande con vistas a la Alhambra" loading="lazy">
+                        </div>
+                        <div class="room-img-thumbs">
+                            <img src="imagenescandelaria/dormitorio4-2.webp" alt="Baño privado del dormitorio 4 con bañera" loading="lazy">
+                            <img src="imagenescandelaria/dormitorio4-3.webp" alt="Terraza privada del dormitorio 4" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <div class="room-header">
+                            <h3>Dormitorio 4 <span class="room-tag">Cama doble grande</span></h3>
+                            <div class="room-capacity">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <span>2 personas</span>
+                            </div>
+                        </div>
+                        <p>La habitación más especial de la casa con cama doble grande, baño privado espacioso y acceso directo a la terraza panorámica. Vistas privilegiadas a la Alhambra.</p>
+                        <ul class="room-amenities">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12V8l-4-4H8L4 8v4"/></svg>
+                                <span>1 cama doble grande (150cm)</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                <span>Baño privado con bañera</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                <span>TV de pantalla plana</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                <span>Acceso a terraza panorámica</span>
+                            </li>
+                        </ul>
+                        <a href="#reservar" class="btn btn-primary">Reservar este dormitorio</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================================
+             PLUGIN BOOKING / CALENDARIO DE RESERVAS
+             ============================================ -->
+        <section id="reservar" class="section booking-section" aria-labelledby="booking-title">
+            <div class="container">
+                <div class="section-header" data-animate="fade-up">
+                    <span class="section-tag">Reserva directa</span>
+                    <h2 id="booking-title" class="section-title">Reserva tu <em>estancia</em></h2>
+                    <p class="section-desc">
+                        Check-in a partir de las <strong>14:00</strong> · Check-out hasta las <strong>12:00</strong><br>
+                        Capacidad máxima: <strong>8 personas</strong> · 4 dormitorios · 4 baños privados
+                    </p>
+                </div>
+
+                <!-- AQUÍ INSERTAS EL WIDGET/IFRAME DE BOOKING.COM -->
+                <div class="booking-widget" data-animate="fade-up">
+                    <!-- 
+                        PLACEHOLDER PARA EL PLUGIN DE BOOKING.COM
+                        Reemplaza este div por el código iframe/widget que te proporcione Booking.com
+                        
+                        Ejemplo típico de Booking.com:
+                        <iframe src="https://www.booking.com/hotel/es/carmen-de-la-candelaria.html?aid=...&checkin=...&checkout=..."
+                                width="100%" height="400" frameborder="0" scrolling="no">
+                        </iframe>
+                    -->
+                    <div class="booking-placeholder">
+                        <div class="placeholder-icon">📅</div>
+                        <h3>Calendario de reservas</h3>
+                        <p>Inserta aquí el widget de Booking.com o tu sistema de reservas preferido.</p>
+                        <div class="placeholder-code">
+                            &lt;!-- Código del widget de Booking.com --&gt;
+                        </div>
+                        <p class="placeholder-note">O usa un plugin de WordPress como:<br>
+                        <strong>Booking.com Affiliate Plugin</strong> o <strong>WooCommerce Bookings</strong></p>
+                    </div>
+                </div>
+
+                <div class="booking-info" data-animate="fade-up">
+                    <div class="info-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <h4>Check-in</h4>
+                        <span>14:00</span>
+                    </div>
+                    <div class="info-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <h4>Check-out</h4>
+                        <span>12:00</span>
+                    </div>
+                    <div class="info-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                        <h4>Capacidad</h4>
+                        <span>8 personas</span>
+                    </div>
+                    <div class="info-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+                        <h4>Tipo</h4>
+                        <span>Casa completa</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             DESCRIPCIÓN + PROS DE LA CASA
+             ============================================ -->
+        <section id="casa" class="section description-section" aria-labelledby="desc-title">
+            <div class="container">
+                <div class="desc-grid">
+                    <!-- Descripción principal -->
+                    <div class="desc-main" data-animate="fade-up">
+                        <span class="section-tag">Tu hogar en Granada</span>
+                        <h2 id="desc-title" class="section-title">Un <em>carmen</em> con historia</h2>
+                        <p>
+                            El Alojamiento Turístico Carmen de La Candelaria consta de <strong>3 plantas</strong>. 
+                            La planta baja tiene recepción, <strong>cocina totalmente equipada</strong> y dos salones. 
+                            En la primera planta están ubicadas las <strong>4 habitaciones con sus 4 baños privados</strong>. 
+                            En la tercera planta, una gran <strong>terraza con vistas a la Alhambra</strong> y a Granada.
+                        </p>
+                        <p>
+                            Ubicado en el corazón del barrio más característico de Granada, el <strong>Albayzín</strong> 
+                            (declarado Patrimonio de la Humanidad por la UNESCO), frente a la Alhambra. 
+                            Cuenta con todos los servicios, y también con la armonía y tranquilidad necesarios 
+                            para una estancia realmente agradable junto a tu familia o grupo de amigos.
+                        </p>
+                        <p>
+                            En definitiva, un lugar privilegiado para disfrutar de la historia y la <em>"magia" andaluza</em>.
+                        </p>
+
+                        <div class="host-mini">
+                            <div class="host-avatar-mini">
+                                <span>AC</span>
+                            </div>
+                            <div class="host-mini-info">
+                                <strong>Antonio Cabello</strong>
+                                <span>Anfitrión · Español, Inglés · Puntuación: 7,6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pros / Ventajas -->
+                    <div class="desc-pros" data-animate="fade-up" data-delay="100">
+                        <h3>¿Por qué elegirnos?</h3>
+                        <ul class="pros-list">
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>Ubicación privilegiada</strong>
+                                    <span>En el Albayzín, frente a la Alhambra, Patrimonio UNESCO</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>4 baños privados</strong>
+                                    <span>Cada dormitorio con su baño en suite. Privacidad total.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>Piscina + Jacuzzi</strong>
+                                    <span>Piscina de temporada al aire libre y bañera de hidromasaje</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>Terraza panorámica</strong>
+                                    <span>Vistas a la Alhambra, la ciudad y la Sierra Nevada</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>Cocina equipada</strong>
+                                    <span>Cocina totalmente equipada para preparar tus comidas</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>WiFi gratis + A/C</strong>
+                                    <span>Conexión de alta velocidad y aire acondicionado en toda la casa</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>Barbacoa + Senderismo</strong>
+                                    <span>Barbacoa en el alojamiento y rutas de senderismo cercanas</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pro-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="pro-text">
+                                    <strong>Traslado al aeropuerto</strong>
+                                    <span>Servicio de pago desde el aeropuerto Federico García Lorca (18 km)</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             GALERÍA: 2 FILAS x 4 COLUMNAS
+             ============================================ -->
+        <section id="galeria" class="section gallery-full" aria-labelledby="galeria-title">
+            <div class="container">
+                <div class="section-header" data-animate="fade-up">
+                    <span class="section-tag">Descubre cada rincón</span>
+                    <h2 id="galeria-title" class="section-title">Galería del <em>hotel</em></h2>
+                </div>
+
+                <div class="gallery-grid-2x4" data-animate="fade-up">
+                    <!-- FILA 1 -->
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria1.webp" alt="Fachada principal del Carmen de la Candelaria" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Fachada Principal</span>
+                        </div>
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria2.webp" alt="Patio interior con fuente de mármol" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Patio Andaluz</span>
+                        </div>
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria3.webp" alt="Salón con chimenea y decoración tradicional" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Salón Principal</span>
+                        </div>
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria4.webp" alt="Cocina totalmente equipada" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Cocina Equipada</span>
+                        </div>
+                    </div>
+
+                    <!-- FILA 2 -->
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria5.webp" alt="Piscina al aire libre con vistas" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Piscina</span>
+                        </div>
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria6.webp" alt="Jacuzzi y zona de relax" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Bañera de Hidromasaje</span>
+                        </div>
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria7.webp" alt="Terraza panorámica al atardecer" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Terraza Panorámica</span>
+                        </div>
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="imagenescandelaria/galeria8.webp" alt="Vistas a la Alhambra desde la terraza" loading="lazy">
+                        <div class="gallery-hover">
+                            <span>Vistas a la Alhambra</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             COSAS QUE HACER POR LA ZONA
+             ============================================ -->
+        <section id="zona" class="section activities-section" aria-labelledby="zona-title">
+            <div class="container">
+                <div class="section-header" data-animate="fade-up">
+                    <span class="section-tag">Descubre Granada</span>
+                    <h2 id="zona-title" class="section-title">Cosas que hacer <em>por la zona</em></h2>
+                </div>
+
+                <div class="activities-grid">
+                    <!-- Monumentos -->
+                    <article class="activity-card" data-animate="fade-up">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad1.webp" alt="La Alhambra de Granada" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">1,7 km</span>
+                            <h3>La Alhambra y el Generalife</h3>
+                            <p>La joya de la corona nazarí, Patrimonio de la Humanidad. Reserva con antelación.</p>
+                        </div>
+                    </article>
+
+                    <article class="activity-card" data-animate="fade-up" data-delay="100">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad2.webp" alt="Mirador de San Nicolás" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">5 min a pie</span>
+                            <h3>Mirador de San Nicolás</h3>
+                            <p>La mejor vista de la Alhambra al atardecer. Imprescindible en tu visita.</p>
+                        </div>
+                    </article>
+
+                    <article class="activity-card" data-animate="fade-up" data-delay="200">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad3.webp" alt="Catedral de Granada" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">1,4 km</span>
+                            <h3>Catedral y Capilla Real</h3>
+                            <p>Primera catedral renacentista de España. Sepultura de los Reyes Católicos.</p>
+                        </div>
+                    </article>
+
+                    <article class="activity-card" data-animate="fade-up" data-delay="300">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad4.webp" alt="Paseo de los Tristes" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">650 m</span>
+                            <h3>Paseo de los Tristes</h3>
+                            <p>El paseo más romántico de Granada, junto al río Darro, con vistas a la Alhambra.</p>
+                        </div>
+                    </article>
+
+                    <article class="activity-card" data-animate="fade-up">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad5.webp" alt="Baños Árabes de Granada" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">800 m</span>
+                            <h3>Baños Árabes</h3>
+                            <p>Relájate en hammams tradicionales con circuito de aguas y masajes.</p>
+                        </div>
+                    </article>
+
+                    <article class="activity-card" data-animate="fade-up" data-delay="100">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad6.webp" alt="Tapas en el Albaicín" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">150 m</span>
+                            <h3>Ruta de Tapas</h3>
+                            <p>Pañero, Horno de Paquito, Los Caracoles... ¡tapa gratis con cada caña!</p>
+                        </div>
+                    </article>
+
+                    <article class="activity-card" data-animate="fade-up" data-delay="200">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad7.webp" alt="Senderismo en Sierra Nevada" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">30 min en coche</span>
+                            <h3>Senderismo Sierra Nevada</h3>
+                            <p>Rutas de montaña, pueblos blancos de la Alpujarra y paisajes únicos.</p>
+                        </div>
+                    </article>
+
+                    <article class="activity-card" data-animate="fade-up" data-delay="300">
+                        <div class="activity-img">
+                            <img src="imagenescandelaria/actividad8.webp" alt="Flamenco en el Sacromonte" loading="lazy">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-dist">10 min a pie</span>
+                            <h3>Zambra Flamenca</h3>
+                            <p>Espectáculos de flamenco auténtico en cuevas del Sacromonte.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Distancias rápidas -->
+                <div class="quick-distances" data-animate="fade-up">
+                    <h4>Distancias desde el alojamiento</h4>
+                    <div class="dist-tags">
+                        <span class="dist-tag">Iglesia de San Luis <strong>200 m</strong></span>
+                        <span class="dist-tag">Carmen de los Mascarones <strong>300 m</strong></span>
+                        <span class="dist-tag">Puerta Nueva <strong>350 m</strong></span>
+                        <span class="dist-tag">Iglesia de San Cristóbal <strong>650 m</strong></span>
+                        <span class="dist-tag">The Albaycin <strong>700 m</strong></span>
+                        <span class="dist-tag">Casa Del Capitel Nazari <strong>850 m</strong></span>
+                        <span class="dist-tag">Museo San Juan de Dios <strong>950 m</strong></span>
+                        <span class="dist-tag">Museo Bellas Artes <strong>1,1 km</strong></span>
+                        <span class="dist-tag">Plaza Nueva <strong>1,2 km</strong></span>
+                        <span class="dist-tag">Plaza Bib-Rambla <strong>1,6 km</strong></span>
+                        <span class="dist-tag">Parque de las Ciencias <strong>3,5 km</strong></span>
+                        <span class="dist-tag">Estación de tren <strong>1,9 km</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             RATING / TESTIMONIO
+             ============================================ -->
+        <section class="rating-section" aria-label="Valoraciones">
+            <div class="container">
+                <div class="rating-card" data-animate="scale-in">
+                    <div class="rating-stars" aria-label="9.8 de 10 estrellas">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div class="rating-score">
+                        <span class="score">9.8</span>
+                        <span class="score-total">/ 10</span>
+                    </div>
+                    <p class="rating-source">Booking.com Traveller Review Awards 2026</p>
+                    <blockquote class="rating-quote">
+                        "Una experiencia mágica en el Albayzín. Despertar con vistas a la Alhambra, 
+                        desayunar en la terraza con el sonido de la fuente... volveremos sin duda."
+                    </blockquote>
+                    <cite class="rating-author">— Familia Rodríguez, Madrid</cite>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CTA FINAL
+             ============================================ -->
+        <section class="section cta-section" aria-label="Reserva final">
+            <div class="cta-bg">
+                <div class="cta-pattern"></div>
+            </div>
+            <div class="container">
+                <div class="cta-content" data-animate="fade-up">
+                    <h2 class="cta-title">¿Listo para vivir <em>Granada</em>?</h2>
+                    <p class="cta-desc">
+                        Reserva directamente y recibe un <strong>dossier exclusivo</strong> con información 
+                        del alojamiento y del barrio: dónde comer, paradas de bus, parkings y ubicaciones 
+                        para aparcar en el Albaicín.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#reservar" class="btn btn-primary btn-large">Reservar Ahora</a>
+                        <a href="mailto:hola@carmendelacandelaria.com" class="btn btn-outline btn-large">Contactar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">CC</span>
+                    <p>Carmen de la Candelaria</p>
+                    <small>Casa Rural · Albayzín · Granada</small>
+                    <p class="footer-address">
+                        Albayzín, Granada<br>
+                        Patrimonio de la Humanidad UNESCO
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Explora</h4>
+                    <ul>
+                        <li><a href="#dormitorios">4 Dormitorios</a></li>
+                        <li><a href="#reservar">Reservar</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#zona">La Zona</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Check-in 14:00 / Check-out 12:00</a></li>
+                        <li><a href="#">Acceso restringido al Albaicín</a></li>
+                        <li><a href="#">Servicio de traslado al aeropuerto</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Anfitrión</h4>
+                    <p class="host-footer">Antonio Cabello</p>
+                    <p class="lang-footer">Español, Inglés</p>
+                    <div class="social-links" style="margin-top: 1rem;">
+                        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                        <a href="#" aria-label="Booking.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Carmen de la Candelaria · Albayzín, Granada · Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
