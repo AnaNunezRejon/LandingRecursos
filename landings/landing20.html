@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WIT Creativo — SEO, Digitalizacion y Ventas Digitales</title>
+  <meta name="description" content="WIT Creativo convierte tu web en un sistema que genera clientes. SEO + Web + Estrategia + Datos + Ventas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="stylelandingwit.css">
+</head>
+<body>
+  <div class="custom-cursor" id="cursor"></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Volver al inicio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">WIT<span class="logo-dot"></span></a>
+      <div class="nav-links">
+        <a href="#services" class="nav-link">Servicios</a>
+        <a href="#solution" class="nav-link">Proceso</a>
+        <a href="#results" class="nav-link">Resultados</a>
+        <a href="#cta" class="nav-link">Contacto</a>
+        <a href="#cta" class="nav-cta">Agendar reunion</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#services" class="nav-mobile-link">Servicios</a>
+      <a href="#solution" class="nav-mobile-link">Proceso</a>
+      <a href="#results" class="nav-mobile-link">Resultados</a>
+      <a href="#cta" class="nav-mobile-link">Contacto</a>
+      <a href="#cta" class="nav-mobile-cta">Agendar reunion</a>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="hero-content visible" id="heroContent">
+      <span class="hero-event">Agencia de Publicidad y Marketing Digital en Granada</span>
+      <h1 class="hero-title" data-hero-title id="heroTitle">
+        <span class="line" id="typeLine1"></span>
+        <span class="line" id="typeLine2"></span>
+        <span class="line" id="typeLine3"></span>
+        <span class="line" id="typeLine4"></span>
+                <span class="line" id="typeLine5"></span>
+      </h1>
+      <!-- Mobile CTA -->
+      <div class="hero-floating-cta is-mobile">
+        <p class="hero-floating-text">La mayoria de negocios no tienen un problema de visibilidad. Tienen un problema de conversion.</p>
+        <a href="#formulario" class="hero-floating-btn">Solicita una reunion</a>
+      </div>
+    </div>
+    <div class="hero-floating-cta" id="heroFloatingCta">
+      <p class="hero-floating-text">La mayoria de negocios no tienen un problema de visibilidad. Tienen un problema de conversion.</p>
+      <a href="#cta" class="hero-floating-btn">Solicita una reunion</a>
+    </div>
+    <div class="hero-3d visible" id="hero3d"></div>
+    <div class="scroll-indicator" id="scrollInd">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section id="solution" class="solution-section">
+    <div class="solution-waves">
+      <div class="solution-wave w1"></div>
+      <div class="solution-wave w2"></div>
+      <div class="solution-wave w3"></div>
+    </div>
+    <canvas class="connection-nodes-canvas" id="connectionNodesCanvas"></canvas>
+    <span class="line-draw-mask-full">
+      <span class="line-draw-bar" id="conectaLine"></span>
+    </span>
+    <div class="content-wrapper">
+      <div class="solution-text">
+        <span class="section-label">La Solucion</span>
+        <h2 class="section-title bigger">
+          <span class="solution-line1">Un sistema digital</span><br>
+          <span class="solution-line2">
+            <span class="conecta-text" id="conectaText">que conecta todo</span>
+          </span>
+        </h2>
+        <p class="section-body"><strong>SEO + Web + Estrategia + Datos + Ventas.</strong> No acciones sueltas. Un sistema que convierte.</p>
+        <div class="solution-pills">
+          <span class="pill">SEO Tecnico</span>
+          <span class="pill">Diseno Web</span>
+          <span class="pill">Analitica</span>
+          <span class="pill">Publicidad</span>
+          <span class="pill">Automatizacion</span>
+        </div>
+      </div>
+      <div class="solution-image"></div>
+    </div>
+  </section>
+
+  <section id="problem" class="problem-section">
+    <div class="problem-bg" id="problemBg">
+      <img src="imageslandingwit/gallery-bg.jpg" alt="Background" loading="lazy">
+    </div>
+    <div class="vintage-gallery" id="vintageGallery">
+      <div class="vintage-img vi-1" data-info="vinfo-1"><img src="imageslandingwit/gallery-2.jpg" alt="" loading="lazy"></div>
+      <div class="vintage-img vi-2" data-info="vinfo-2"><img src="imageslandingwit/gallery-3.jpg" alt="" loading="lazy"></div>
+      <div class="vintage-img vi-3" data-info="vinfo-3"><img src="imageslandingwit/gallery-4.jpg" alt="" loading="lazy"></div>
+      <div class="vintage-img vi-4" data-info="vinfo-4"><img src="imageslandingwit/gallery-5.jpg" alt="" loading="lazy"></div>
+      <div class="vintage-img vi-5" data-info="vinfo-5"><img src="imageslandingwit/gallery-6.jpg" alt="" loading="lazy"></div>
+      <div class="vintage-img vi-6" data-info="vinfo-6"><img src="imageslandingwit/gallery-7.jpg" alt="" loading="lazy"></div>
+      <div class="vintage-img vi-7" data-info="vinfo-7"><img src="imageslandingwit/gallery-8.jpg" alt="" loading="lazy"></div>
+      <div class="vintage-img vi-8" data-info="vinfo-8"><img src="imageslandingwit/gallery-10.jpg" alt="" loading="lazy"></div>
+    </div>
+    <div class="vintage-info" id="vinfo-1"><span class="info-label">Trafico</span><h4>Datos sin resultados</h4><p>Miles de visitas que no convierten en ventas reales.</p></div>
+    <div class="vintage-info" id="vinfo-2"><span class="info-label">Web</span><h4>Diseno desactualizado</h4><p>Tu web informa pero no guia hacia la conversion.</p></div>
+    <div class="vintage-info" id="vinfo-3"><span class="info-label">Marketing</span><h4>Inversion sin retorno</h4><p>Dinero gastado en campanas sin resultados claros.</p></div>
+    <div class="vintage-info" id="vinfo-4"><span class="info-label">Solucion</span><h4>Web optimizada</h4><p>Diseno enfocado en convertir visitas en clientes.</p></div>
+    <div class="vintage-info" id="vinfo-5"><span class="info-label">SEO</span><h4>Visibilidad vacia</h4><p>Posicionamiento sin estrategia de conversion.</p></div>
+    <div class="vintage-info" id="vinfo-6"><span class="info-label">Ads</span><h4>Budget quemado</h4><p>Publicidad que genera clics pero no ventas.</p></div>
+    <div class="vintage-info" id="vinfo-7"><span class="info-label">Antes / Despues</span><h4>Transformacion real</h4><p>De pagina informativa a maquina de ventas.</p></div>
+    <div class="vintage-info" id="vinfo-8"><span class="info-label">Equipo</span><h4>Estrategia WIT 360</h4><p>Metodologia probada para escalar resultados.</p></div>
+    <div class="problem-content">
+      <span class="section-label">El Problema</span>
+      <h2 class="problem-title" data-title id="problemTitle">No es visibilidad.<br>Es conversion.</h2>
+      <p class="problem-body">Tienes trafico, pero no clientes. Inviertes en marketing, pero sin retorno claro. Tu web informa, pero no vende. Dependes de la publicidad para crecer.</p>
+    </div>
+    <!-- Mobile image grid -->
+    <div class="problem-images-grid">
+      <img src="imageslandingwit/gallery-2.jpg" alt="" loading="lazy">
+      <img src="imageslandingwit/gallery-3.jpg" alt="" loading="lazy">
+      <img src="imageslandingwit/gallery-4.jpg" alt="" loading="lazy">
+      <img src="imageslandingwit/gallery-5.jpg" alt="" loading="lazy">
+    </div>
+  </section>
+
+  <div class="parallax-sections-wrapper" id="parallaxWrapper">
+    <div class="parallax-bg-layer" id="parallaxBgLayer">
+      <img src="imageslandingwit/parallax-bg.jpg" alt="" loading="lazy">
+    </div>
+
+    <section id="services" class="services-section">
+      <div class="services-parallax" id="servicesParallax">SEO WEB VENTAS</div>
+      <div class="content-wrapper">
+        <span class="section-label">Que hacemos en WIT 360</span>
+        <h2 class="section-title">
+          <span class="title-seo" id="seoWord">SEO</span>
+          <span class="title-estrategico" id="estrategicoWord">estrategico.</span><br>
+          <span class="title-webs" id="websWord">Webs</span>
+          <span class="title-venden" id="vendenWord">que venden.</span>
+        </h2>
+        <p class="section-body centered">Ayudamos a empresas a atraer clientes con SEO estrategico, convertir visitas en oportunidades reales, optimizar su web para vender y escalar sus resultados digitales.</p>
+        <div class="services-grid">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="20" cy="20" r="8"/>
+                    <line x1="32" y1="32" x2="26" y2="26"/>
+                    <path d="M8 20h4M20 8v4M32 20h-4M20 32v-4" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3>Atraer clientes</h3>
+                <p>SEO estrategico que posiciona tu negocio donde tus clientes buscan.</p>
+              </div>
+              <div class="flip-card-back">
+                <h3>Atraer clientes</h3>
+                <p>Investigamos las palabras clave que tu audiencia real esta buscando y optimizamos cada pagina para posicionarte en Google.</p>
+                <ul class="back-list">
+                  <li>Investigacion de keywords</li>
+                  <li>SEO on-page avanzado</li>
+                  <li>Link building natural</li>
+                  <li>Content clustering</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 36l8-16 6 10 10-20" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3>Convertir visitas</h3>
+                <p>Transforma trafico en oportunidades reales de venta.</p>
+              </div>
+              <div class="flip-card-back">
+                <h3>Convertir visitas</h3>
+                <p>Analizamos el recorrido del usuario y eliminamos fricciones para que cada visita cuente como una oportunidad de negocio.</p>
+                <ul class="back-list">
+                  <li>Optimizacion de CTAs</li>
+                  <li>A/B testing continuo</li>
+                  <li>Landing pages de conversion</li>
+                  <li>Formularios optimizados</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="8" y="10" width="32" height="28" rx="3"/>
+                    <line x1="8" y1="18" x2="40" y2="18"/>
+                    <circle cx="16" cy="14" r="1.5" fill="currentColor" stroke="none"/>
+                    <circle cx="22" cy="14" r="1.5" fill="currentColor" stroke="none"/>
+                  </svg>
+                </div>
+                <h3>Optimizar tu web</h3>
+                <p>Diseno y desarrollo enfocado en conversion, no solo en estetica.</p>
+              </div>
+              <div class="flip-card-back">
+                <h3>Optimizar tu web</h3>
+                <p>Disenamos experiencias digitales donde cada elemento tiene un proposito: convertir visitantes en clientes.</p>
+                <ul class="back-list">
+                  <li>UX/UI centrado en conversion</li>
+                  <li>Velocidad de carga optima</li>
+                  <li>Responsive perfecto</li>
+                  <li>Accesibilidad web</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 38l10-16 8 10 18-24" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3>Escalar resultados</h3>
+                <p>Sistemas digitales que crecen con tu negocio de forma sostenible.</p>
+              </div>
+              <div class="flip-card-back">
+                <h3>Escalar resultados</h3>
+                <p>Automatizamos procesos y creamos sistemas que funcionan 24/7 para que tu negocio crezca sin limites.</p>
+                <ul class="back-list">
+                  <li>Marketing automation</li>
+                  <li>CRM y nutricion de leads</li>
+                  <li>Reportes automaticos</li>
+                  <li>Escalado de campanas</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="results-section">
+      <div class="content-wrapper">
+        <span class="section-label">Resultado</span>
+        <h2 class="section-title centered">
+          <span class="result-line" id="visibilidadLine">Mas visibilidad.</span><br>
+          <span class="result-line" id="conversionesLine">Mas conversiones.</span><br>
+          <span class="result-line" id="ventasLine">Mas ventas.</span>
+        </h2>
+        <p class="section-body centered">Sin complicar el proceso.</p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-number" data-count="300">+0%</span>
+            <span class="stat-label">Trafico organico medio</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-count="150">+0%</span>
+            <span class="stat-label">Tasa de conversion</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-count="10">0x</span>
+            <span class="stat-label">ROI en campanas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="is-for-you" class="isforyou-section">
+      <div class="content-wrapper">
+        <div class="isforyou-text">
+          <span class="section-label">Si tu negocio necesita crecer</span>
+          <h2 class="section-title"><span id="isForYouTypeText"></span><span class="type-cursor" id="isForYouCursor"></span></h2>
+          <ul class="check-list" id="checkList">
+            <li data-index="0"><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Quieres vender mas online</li>
+            <li data-index="1"><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Necesitas mejorar tu conversion</li>
+            <li data-index="2"><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Estas invirtiendo en marketing sin resultados claros</li>
+            <li data-index="3"><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Quieres un sistema, no acciones sueltas</li>
+          </ul>
+        </div>
+        <div class="isforyou-visual" id="interactiveShapes">
+          <div class="shape-circle" data-color="#FFD700"></div>
+          <div class="shape-circle" data-color="#FF6B6B"></div>
+          <div class="shape-circle" data-color="#4ECDC4"></div>
+          <div class="shape-circle" data-color="#FFD700"></div>
+          <div class="shape-particles" id="shapeParticles"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="process-section">
+      <div class="content-wrapper">
+        <span class="section-label">Nuestro Proceso</span>
+        <h2 class="section-title centered"><span id="sistemaWord">Sistema</span> <span id="witWord">WIT</span> <span id="num360">360</span></h2>
+        <div class="carousel-wrapper">
+          <div class="carousel-container" id="carouselContainer">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-card"><span class="card-number">01</span><h3>SEO TECNICO</h3><p>Optimizacion completa de tu infraestructura digital para que Google te encuentre y entienda.</p></div>
+              <div class="carousel-card"><span class="card-number">02</span><h3>CONTENIDOS</h3><p>Estrategia editorial que atrae, educa y convierte a tu audiencia ideal.</p></div>
+              <div class="carousel-card"><span class="card-number">03</span><h3>DISENO WEB</h3><p>Experiencias convertidoras que guian al visitante hacia la accion.</p></div>
+              <div class="carousel-card"><span class="card-number">04</span><h3>ANALITICA</h3><p>Tomas decisiones basadas en datos reales, no en suposiciones.</p></div>
+              <div class="carousel-card"><span class="card-number">05</span><h3>PUBLICIDAD</h3><p>Campanas rentables que escalan tus resultados sin desperdiciar presupuesto.</p></div>
+              <div class="carousel-card"><span class="card-number">06</span><h3>AUTOMATIZACION</h3><p>Escalar sin friccion. Sistemas que trabajan por ti 24/7.</p></div>
+            </div>
+          </div>
+          <div class="carousel-nav" id="carouselNav">
+            <button class="carousel-btn prev" id="carouselPrev" aria-label="Anterior">&#8592;</button>
+            <button class="carousel-btn next" id="carouselNext" aria-label="Siguiente">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="cta" class="cta-section">
+    <div class="cta-content">
+      <svg class="draw-svg" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
+        <g class="stroke-ref" stroke="#E0E0E0" stroke-width="2" fill="none">
+          <text x="400" y="100" text-anchor="middle" font-size="72" font-family="Space Grotesk, sans-serif" font-weight="700" letter-spacing="-2">TRANSFORMA</text>
+          <text x="400" y="250" text-anchor="middle" font-size="28" font-family="Space Grotesk, sans-serif">TU PRESENCIA DIGITAL</text>
+          <text x="400" y="400" text-anchor="middle" font-size="18" font-family="JetBrains Mono, monospace">info@witcreativo.es</text>
+        </g>
+        <g class="stroke-draw" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <text class="draw-stroke" x="400" y="100" text-anchor="middle" font-size="72" font-family="Space Grotesk, sans-serif" font-weight="700" letter-spacing="-2">TRANSFORMA</text>
+          <text class="draw-stroke" x="400" y="250" text-anchor="middle" font-size="30" font-family="Space Grotesk, sans-serif">TU PRESENCIA DIGITAL</text>
+          <text class="draw-stroke" x="400" y="400" text-anchor="middle" font-size="18" font-family="JetBrains Mono, monospace">info@witcreativo.es</text>
+        </g>
+      </svg>
+      <div class="cta-buttons" id="ctaButtons">
+        <a href="#formulario" class="btn-primary">Solicita una reunion</a>
+        <a href="#solution" class="btn-secondary">Analizamos tu caso</a>
+        <a href="#results" class="btn-secondary">Ver oportunidades</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="formulario" class="form-section">
+    <div class="form-dark-header">
+      <span class="form-kicker">Tienes un proyecto? Hablemos</span>
+      <h2 class="form-dark-title">CONTACTA</h2>
+      <div class="form-ornament">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="24" r="20"/>
+          <circle cx="24" cy="24" r="6" fill="var(--yellow)" stroke="none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="form-dark-body">
+      <form id="contactForm" class="form-dark-grid">
+        <div class="form-dark-row">
+          <input type="text" id="name" name="name" placeholder="Nombre *" required>
+          <input type="text" id="company" name="company" placeholder="Empresa">
+        </div>
+        <div class="form-dark-row">
+          <input type="email" id="email" name="email" placeholder="Email *" required>
+          <input type="tel" id="phone" name="phone" placeholder="Telefono">
+        </div>
+        <div class="form-dark-row">
+          <textarea id="message" name="message" rows="3" placeholder="Cuentanos sobre tu proyecto..."></textarea>
+        </div>
+        <button type="submit" class="form-dark-btn">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <footer id="footer" class="footer">
+    <div class="footer-content">
+      <div class="footer-brand"><span class="footer-logo">WIT<span class="logo-dot"></span></span><p>Granada</p></div>
+      <div class="footer-event"><span>SEO, Digitalizacion y Ventas Digitales</span><span>Agencia de Publicidad y Marketing Digital</span></div>
+      <div class="footer-links"><a href="#" class="footer-link">LinkedIn</a><a href="#" class="footer-link">Instagram</a><a href="mailto:info@witcreativo.es" class="footer-link">Email</a></div>
+    </div>
+    <div class="footer-bottom"><span>2026 WIT Creativo. Todos los derechos reservados.</span></div>
+  </footer>
+
+  <script src="scriptlandingwit.js"></script>
+</body>
+</html>
