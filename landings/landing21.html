@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Macetitas 3D - Maceteros Impresos en 3D con Personalidad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* ============================================
+   MACETITAS 3D - ESTILOS COMPLETOS
+   ============================================ */
+
+/* Reset */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* Variables */
+:root{
+  --c-dark:#1a3c27;
+  --c-medium:#2d6a4f;
+  --c-light:#40916c;
+  --c-accent:#52b788;
+  --c-glow:#74c69d;
+  --c-cream:#fefae0;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:radial-gradient(ellipse at center,#1a3c27 0%,#0d2818 100%);
+  color:var(--c-cream);
+  overflow-x:hidden;
+  line-height:1.5;
+}
+
+/* Nav */
+.navbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:50;
+  transition:all .5s ease;
+  background:transparent;
+}
+.navbar.scrolled{
+  background:rgba(26,60,39,.85);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
+}
+.navbar-inner{
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:1.25rem;
+  color:var(--c-cream);
+  text-decoration:none;
+  transition:color .3s;
+}
+.nav-logo:hover{color:var(--c-glow)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  font-family:'DM Sans',sans-serif;
+  font-size:.875rem;
+  font-weight:500;
+  color:var(--c-cream);
+  text-decoration:none;
+  transition:color .3s;
+}
+.nav-links a:hover{color:var(--c-glow)}
+
+/* Hero */
+.hero{
+  position:relative;
+  min-height:100vh;
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+.hero-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  z-index:1;
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;
+  z-index:10;
+  max-width:1280px;
+  margin:0 auto;
+  padding:96px 24px;
+  width:100%;
+}
+.hero-grid{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:48px;
+}
+.hero-text{text-align:center}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:clamp(3rem,6vw,5rem);
+  color:var(--c-cream);
+  letter-spacing:-.02em;
+  line-height:1.1;
+}
+.hero-subtitle{
+  margin-top:24px;
+  font-size:clamp(1rem,2vw,1.25rem);
+  color:rgba(254,250,224,.85);
+  max-width:480px;
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.6;
+}
+.hero-cta{
+  margin-top:32px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:16px 32px;
+  background:var(--c-accent);
+  color:var(--c-dark);
+  font-family:'DM Sans',sans-serif;
+  font-weight:600;
+  font-size:1rem;
+  border:none;
+  border-radius:9999px;
+  cursor:pointer;
+  transition:all .3s ease;
+  text-decoration:none;
+}
+.hero-cta:hover{
+  background:var(--c-glow);
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(82,183,136,.3);
+}
+
+/* Hero Slider */
+.hero-slider-col{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.hero-slider{
+  position:relative;
+  width:280px;
+  height:360px;
+}
+.hero-slider-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:20;
+  width:40px;height:40px;
+  border-radius:9999px;
+  background:rgba(45,106,79,.6);
+  border:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all .3s;
+  color:var(--c-cream);
+  font-size:1rem;
+}
+.hero-slider-arrow:hover{
+  background:rgba(82,183,136,.8);
+  transform:translateY(-50%) scale(1.1);
+}
+.hero-slider-arrow.prev{left:-16px}
+.hero-slider-arrow.next{right:-16px}
+.hero-slides{
+  position:relative;
+  width:100%;height:100%;
+  animation:float-gentle 4s ease-in-out infinite;
+}
+.hero-slide-img{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  opacity:0;
+  transform:scale(.95);
+  transition:all .5s ease;
+  filter:drop-shadow(0 20px 60px rgba(26,60,39,.5));
+  pointer-events:none;
+}
+.hero-slide-img.active{
+  opacity:1;
+  transform:scale(1);
+}
+.hero-slider-dots{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:24px;
+}
+.slider-dot{
+  width:10px;height:10px;
+  border-radius:9999px;
+  background:rgba(254,250,224,.3);
+  border:none;
+  cursor:pointer;
+  transition:all .3s;
+}
+.slider-dot:hover{background:rgba(254,250,224,.5)}
+.slider-dot.active{background:var(--c-accent);width:32px}
+
+/* Scroll indicator */
+.scroll-indicator{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  animation:bounce-down 2s ease-in-out infinite;
+  color:rgba(254,250,224,.5);
+}
+
+/* Featured */
+.featured{
+  width:100%;
+  padding:96px 0;
+  background:var(--c-dark);
+}
+.featured-inner{
+  max-width:1000px;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:center;
+  gap:48px;
+}
+.featured-text{text-align:center}
+.featured-eyebrow{
+  font-size:.75rem;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  color:var(--c-accent);
+}
+.featured-title{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--c-cream);
+  margin-top:16px;
+}
+.featured-desc{
+  margin-top:24px;
+  font-size:clamp(1rem,2vw,1.25rem);
+  color:rgba(254,250,224,.8);
+  line-height:1.6;
+}
+.featured-cta{
+  margin-top:32px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:16px 32px;
+  border:2px solid rgba(254,250,224,.4);
+  color:var(--c-cream);
+  font-weight:600;
+  border-radius:9999px;
+  background:transparent;
+  cursor:pointer;
+  transition:all .3s;
+  text-decoration:none;
+}
+.featured-cta:hover{
+  border-color:var(--c-cream);
+  background:rgba(254,250,224,.1);
+  box-shadow:0 0 20px rgba(82,183,136,.3);
+}
+.featured-image-wrap{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+.featured-image{
+  width:350px;height:350px;
+  object-fit:contain;
+  filter:drop-shadow(0 30px 80px rgba(0,0,0,.4));
+  animation:gentle-rotate 6s ease-in-out infinite;
+}
+
+/* Gallery Section */
+.gallery-section{
+  position:relative;
+  width:100%;
+  padding:96px 0 128px;
+  overflow:hidden;
+}
+.parallax-bg{
+  position:absolute;
+  inset:0;
+  background-image:url('images/parallax-bg.jpg');
+  background-size:cover;
+  /*background-position:center;*/
+  opacity:.5;
+  z-index:1;
+}
+.parallax-overlay{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 30%,rgba(26,60,39,.4) 0%,rgba(13,40,24,.75) 100%);
+  z-index:2;
+}
+.gallery-content{
+  position:relative;
+  z-index:10;
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.gallery-header{
+  text-align:center;
+  margin-bottom:80px;
+}
+.gallery-label{
+  font-size:.75rem;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  color:var(--c-glow);
+}
+.gallery-title{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--c-cream);
+  margin-top:16px;
+}
+.gallery-subtitle{
+  font-size:1rem;
+  color:rgba(254,250,224,.7);
+  max-width:36rem;
+  margin:16px auto 0;
+  line-height:1.6;
+}
+
+/* Card Grid */
+.card-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:96px 32px;
+  max-width:1000px;
+  margin:0 auto;
+}
+
+/* ============================================
+   LEAF INTRO SECTION
+   ============================================ */
+
+.leaf-intro {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background layer */
+.leaf-intro-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('images/leaf-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+/* Dark overlay for text readability */
+.leaf-intro-darken {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 40, 24, 0.5) 0%,
+    rgba(13, 40, 24, 0.7) 50%,
+    rgba(13, 40, 24, 0.5) 100%
+  );
+  z-index: 2;
+}
+
+/* Content container */
+.leaf-intro-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Typewriter text */
+.leaf-intro-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--c-cream);
+  letter-spacing: -0.02em;
+  text-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.5),
+    0 2px 10px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+/* Blinking cursor */
+.leaf-cursor {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--c-cream);
+  animation: blink 1s step-end infinite;
+  margin-left: -8px;
+}
+
+/* Instagram icon */
+.leaf-intro-instagram {
+  color: var(--c-cream);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.4));
+  z-index: 15;
+}
+.leaf-intro-instagram:hover {
+  color: var(--c-glow);
+  transform: scale(1.1);
+}
+
+/* Floating leaves */
+.leaf-floating {
+  position: absolute;
+  pointer-events: none;
+  z-index: 20;
+  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.5));
+  animation: leaf-float 5s ease-in-out infinite;
+}
+
+/* Big leaf over text */
+.leaf-over-text {
+  width: clamp(180px, 22vw, 320px);
+  height: clamp(180px, 22vw, 320px);
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+  transform: rotate(-15deg);
+}
+
+/* Small leaf over instagram */
+.leaf-over-insta {
+  width: clamp(100px, 14vw, 200px);
+  height: clamp(100px, 14vw, 200px);
+  top: 20%;
+  right: 18%;
+  animation-delay: 1.5s;
+  animation-duration: 5s;
+  transform: rotate(25deg);
+}
+
+/* Cursor blink animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Leaf float animation */
+@keyframes leaf-float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  25% {
+    transform: translateY(-15px) rotate(calc(var(--rot, 0deg) + 3deg));
+  }
+  50% {
+    transform: translateY(-8px) rotate(calc(var(--rot, 0deg) - 2deg));
+  }
+  75% {
+    transform: translateY(-20px) rotate(calc(var(--rot, 0deg) + 2deg));
+  }
+}
+
+/* ============================================
+   PRODUCT CARD - 300px CENTERED POT
+   ============================================ */
+.card-wrap{
+  position:relative;
+  width:100%;
+  max-width:300px;
+  margin:0 auto;
+  /* Space for 300px pot above */
+  padding-top:180px;
+  cursor:pointer;
+}
+
+/* Pot centered WITHOUT left:50% or translateX */
+.pot-box{
+  position:absolute;
+  top:120px;
+  /* Centering: left:0 + right:0 + margin:auto + fixed width */
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:300px;
+  height:300px;
+  z-index:30;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.pot-photo{
+  width:300px;
+  height:300px;
+  object-fit:contain;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.45));
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pot-photo.flip{
+  transform:scale(.85) translateY(-150px);
+}
+
+/* Card Flipper */
+.card-flipper{
+  position:relative;
+  width:100%;
+  height:380px;
+  perspective:1000px;
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.card-flipper.flipped{
+  transform:rotateY(180deg);
+}
+.card-face{
+  position:absolute;
+  inset:0;
+  border-radius:24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  overflow:hidden;
+}
+
+/* FRONT - Translucent Glass */
+.card-front{
+  justify-content:flex-end;
+  padding:0 20px 40px;
+  z-index:2;
+  background:linear-gradient(160deg,rgba(255,255,255,.2) 0%,rgba(255,255,255,.06) 40%,rgba(255,255,255,.02) 60%,rgba(255,255,255,.14) 100%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  /*backdrop-filter:blur(20px) saturate(140%);*/
+  border:1.5px solid rgba(255,255,255,.25);
+  box-shadow:0 8px 32px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.1);
+  transition:all .3s ease;
+}
+.card-wrap:hover .card-front{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.35);
+  box-shadow:0 16px 48px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+/* BACK - Translucent Glass */
+.card-back{
+  justify-content:center;
+  padding:24px;
+  text-align:center;
+  z-index:1;
+ /* background:linear-gradient(160deg,rgba(255,255,255,.24) 0%,rgba(255,255,255,.08) 40%,rgba(255,255,255,.04) 60%,rgba(255,255,255,.18) 100%);*/
+  -webkit-backdrop-filter:blur(24px) saturate(160%);
+  backdrop-filter:blur(24px) saturate(160%);
+  border:1.5px solid rgba(255,255,255,.3);
+  box-shadow:0 8px 32px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.12);
+  transform:rotateY(180deg);
+}
+
+/* Card text */
+.card-name{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:1.5rem;
+  color:#fff;
+  margin:0;
+}
+.card-tag{
+  font-size:.75rem;
+  color:var(--c-glow);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-top:8px;
+}
+.card-desc{
+  font-size:.875rem;
+  color:rgba(255,255,255,.9);
+  line-height:1.6;
+  margin-top:12px;
+}
+.card-back .card-icon{
+  width:20px;height:20px;
+  color:var(--c-glow);
+  margin-top:16px;
+}
+
+/* Shelf Wall */
+.shelf-section {
+  width: 100%;
+  padding: 80px 0;        /* ya está, mantiene espacio arriba/abajo de la sección */
+  background: #0d2818;
+  overflow: hidden;
+}
+.shelf-header{
+  position:relative;
+  z-index:10;
+  text-align:center;
+  margin-bottom:48px;
+}
+.shelf-label{
+  font-size:.75rem;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  color:var(--c-glow);
+}
+.shelf-title{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--c-cream);
+  margin-top:16px;
+}
+.shelf-hint{
+  font-size:.875rem;
+  color:rgba(254,250,224,.5);
+  max-width:28rem;
+  margin:12px auto 0;
+  padding:0 24px;
+}
+.shelf-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;      /* para que no sea gigante en pantallas anchas */
+  margin: 0 auto;
+  padding: 0 20px;        /* 20px a los lados */
+}
+.shelf-image-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;    /* bordes redondeados */
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);  /* sombra por detrás */
+}
+.shelf-image{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+}
+
+/* Hotspots */
+.shelf-hotspot{
+  position:absolute;
+  cursor:pointer;
+  z-index:10;
+  border-radius:12px;
+  transition:box-shadow .3s;
+}
+.shelf-hotspot:hover{
+  z-index:20;
+  box-shadow:0 0 0 2px rgba(82,183,136,.6),0 0 30px rgba(82,183,136,.2);
+}
+.shelf-tooltip{
+  position:absolute;
+  z-index:50;
+  pointer-events:none;
+  transition:opacity .2s;
+  left:50%;
+  bottom:calc(100% + 8px);
+  transform:translateX(-50%);
+  opacity:0;
+}
+.shelf-hotspot:hover .shelf-tooltip{
+  opacity:1;
+}
+.shelf-tooltip-inner{
+  border-radius:12px;
+  padding:10px 16px;
+  white-space:nowrap;
+  background:rgba(26,60,39,.92);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(116,198,157,.3);
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+.shelf-tooltip-name{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:.875rem;
+  color:var(--c-cream);
+}
+.shelf-tooltip-tagline{
+  font-size:.75rem;
+  color:var(--c-glow);
+  margin-top:2px;
+}
+
+/* Contact Form */
+.contact-section{
+  position:relative;
+  width:100%;
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:96px 24px;
+  overflow:hidden;
+}
+.contact-bg{
+  position:absolute;
+  inset:0;
+  background-image:url('images/bg-leaves-1.jpg');
+  background-size:cover;
+  background-position:center;
+}
+.contact-bg-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(13,40,24,.6);
+}
+.glass-form-card{
+  position:relative;
+  z-index:10;
+  width:100%;
+  max-width:480px;
+  border-radius:24px;
+  padding:48px 32px;
+  background:rgba(255,255,255,.06);
+  -webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 8px 32px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.contact-title{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:clamp(2rem,4vw,3rem);
+  color:#fff;
+  text-align:center;
+}
+.contact-subtitle{
+  font-size:.875rem;
+  color:rgba(255,255,255,.7);
+  text-align:center;
+  margin-top:12px;
+  line-height:1.6;
+}
+
+/* Form fields */
+.form-group{
+  position:relative;
+  margin-top:24px;
+}
+.form-group input,
+.form-group textarea{
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,.3);
+  outline:none;
+  color:#fff;
+  width:100%;
+  padding:16px 0;
+  font-size:1rem;
+  font-family:'DM Sans',sans-serif;
+  transition:border-color .3s;
+  resize:vertical;
+}
+.form-group input:focus,
+.form-group textarea:focus{
+  border-color:var(--c-accent);
+}
+.form-group label{
+  position:absolute;
+  left:0;
+  top:16px;
+  color:rgba(255,255,255,.5);
+  pointer-events:none;
+  transition:all .3s ease;
+}
+.form-group input:focus+label,
+.form-group input:not(:placeholder-shown)+label,
+.form-group textarea:focus+label,
+.form-group textarea:not(:placeholder-shown)+label{
+  top:-8px;
+  font-size:.75rem;
+  color:var(--c-accent);
+}
+.form-submit{
+  width:100%;
+  margin-top:32px;
+  padding:16px;
+  background:var(--c-accent);
+  color:var(--c-dark);
+  font-family:'DM Sans',sans-serif;
+  font-weight:600;
+  font-size:1rem;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:all .3s;
+}
+.form-submit:hover{
+  background:var(--c-glow);
+  transform:scale(1.02);
+}
+.form-success{
+  text-align:center;
+  padding:32px 0;
+}
+.form-success-icon{
+  width:64px;height:64px;
+  border-radius:9999px;
+  background:rgba(82,183,136,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 16px;
+}
+.form-success-icon svg{
+  width:32px;height:32px;
+  color:var(--c-accent);
+}
+.form-success-text{
+  color:#fff;
+  font-size:1.125rem;
+}
+
+/* Footer */
+.footer{
+  width:100%;
+  padding:48px 0;
+  background:var(--c-dark);
+}
+.footer-inner{
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.footer-top{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
+}
+.footer-links{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+.footer-links a{
+  font-size:.875rem;
+  color:rgba(254,250,224,.6);
+  text-decoration:none;
+  transition:color .3s;
+}
+.footer-links a:hover{color:var(--c-glow)}
+.footer-bottom{
+  margin-top:32px;
+  padding-top:32px;
+  border-top:1px solid rgba(45,106,79,.3);
+  text-align:center;
+}
+.footer-copy{
+  font-size:.75rem;
+  color:rgba(254,250,224,.35);
+}
+
+/* Animations */
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+@keyframes float-gentle{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@keyframes bounce-down{
+  0%,100%{transform:translateY(0);opacity:.5}
+  50%{transform:translateY(8px);opacity:1}
+}
+@keyframes gentle-rotate{
+  0%,100%{transform:rotate(-2deg)}
+  50%{transform:rotate(2deg)}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--c-dark)}
+::-webkit-scrollbar-thumb{background:var(--c-medium);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--c-light)}
+
+/* Responsive */
+@media(min-width:640px){
+  .hero-slider{width:340px;height:440px}
+  .hero-slider-arrow.prev{left:-24px}
+  .hero-slider-arrow.next{right:-24px}
+  .featured-image{width:450px;height:450px}
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{flex-direction:row;justify-content:space-between}
+  .glass-form-card{padding:48px 40px}
+}
+@media(min-width:1024px){
+  .navbar-inner{height:80px}
+  .hero-grid{flex-direction:row;gap:32px}
+  .hero-text{text-align:left;max-width:55%}
+  .hero-subtitle{margin-left:0;margin-right:0}
+  .hero-slider{width:400px;height:500px}
+  .hero-slider-arrow.prev{left:-32px}
+  .hero-slider-arrow.next{right:-32px}
+  .featured-inner{flex-direction:row;gap:64px}
+  .featured-text{text-align:left;max-width:45%}
+  .featured-image{width:500px;height:500px}
+  .card-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-links{gap:40px}
+}
+
+  </style>
+
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="#hero" class="nav-logo">Macetitas3D</a>
+      <div class="nav-links">
+        <a href="#hero">Inicio</a>
+        <a href="#coleccion">Coleccion</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1 class="hero-title">Macetitas 3D</h1>
+          <p class="hero-subtitle">
+            Dale vida a tus plantas con maceteros impresos en 3D, disenados
+            con personalidad y hechos con amor. Cada pieza es unica,
+            sostenible y lista para convertir tu hogar en un jardin verde.
+          </p>
+          <a href="#coleccion" class="hero-cta">Descubre la coleccion</a>
+        </div>
+        <div class="hero-slider-col">
+          <div class="hero-slider" id="heroSlider">
+            <button class="hero-slider-arrow prev" id="slidePrev" aria-label="Anterior">&#10094;</button>
+            <button class="hero-slider-arrow next" id="slideNext" aria-label="Siguiente">&#10095;</button>
+            <div class="hero-slides">
+              <img src="imagesMacetitas/hero-pot-1.png" alt="Macetero 3D 1" class="hero-slide-img active" data-slide="0" />
+              <img src="imagesMacetitas/hero-pot-2.png" alt="Macetero 3D 2" class="hero-slide-img" data-slide="1" />
+              <img src="imagesMacetitas/hero-pot-3.png" alt="Macetero 3D 3" class="hero-slide-img" data-slide="2" />
+              <img src="imagesMacetitas/hero-pot-4.png" alt="Macetero 3D 4" class="hero-slide-img" data-slide="3" />
+              <img src="imagesMacetitas/hero-pot-5.png" alt="Macetero 3D 5" class="hero-slide-img" data-slide="4" />
+            </div>
+          </div>
+          <div class="hero-slider-dots" id="slideDots"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+  </section>
+
+  <!-- ============ LEAF INTRO ============ -->
+<section class="leaf-intro" id="leafIntro">
+  <div class="leaf-intro-bg"></div>
+  <div class="leaf-intro-darken"></div>
+  <div class="leaf-intro-content">
+    <!-- Typewriter text -->
+    <h2 class="leaf-intro-text" id="typewriterText"></h2>
+    <span class="leaf-cursor" id="typeCursor">|</span>
+    
+    <!-- Instagram link -->
+    <a href="https://instagram.com" target="_blank" class="leaf-intro-instagram" aria-label="Instagram">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+  </div>
+  
+  <!-- Floating leaf over text -->
+  <img src="imagesMacetitas/leaf-overlay.png" alt="" class="leaf-floating leaf-over-text" id="leafOverText" />
+  
+  <!-- Floating leaf over instagram -->
+  <img src="imagesMacetitas/leaf-small.png" alt="" class="leaf-floating leaf-over-insta" id="leafOverInsta" />
+</section>
+
+  <!-- ============ FEATURED PRODUCT ============ -->
+  <section class="featured" id="featured">
+    <div class="featured-inner">
+      <div class="featured-text">
+        <span class="featured-eyebrow">Producto Destacado</span>
+        <h2 class="featured-title">La Coleccion Verde</h2>
+        <p class="featured-desc">
+          Nuestras macetitas no son solo contenedores para plantas. Cada
+          diseno tiene una historia, una personalidad y un proposito. Desde
+          el cuidadoso Pedro hasta la aventurera Luna, encuentra el
+          companero perfecto para tu hogar.
+        </p>
+        <a href="#coleccion" class="featured-cta">Ver toda la coleccion</a>
+      </div>
+      <div class="featured-image-wrap">
+        <img src="imagesMacetitas/featured-pot.png" alt="Coleccion de maceteros 3D" class="featured-image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCT GALLERY ============ -->
+  <section class="gallery-section" id="coleccion">
+    <div class="parallax-bg"></div>
+    <div class="parallax-overlay"></div>
+    <div class="gallery-content">
+      <div class="gallery-header">
+        <span class="gallery-label">Nuestra Coleccion</span>
+        <h2 class="gallery-title">Conoce a la Familia</h2>
+        <p class="gallery-subtitle">
+          Cada macetita tiene su propia personalidad. Haz clic para descubrir
+          quien hay detras de cada diseno.
+        </p>
+      </div>
+      <div class="card-grid" id="cardGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ MURO VERDE ============ -->
+  <section class="shelf-section" id="muroverde">
+    <div class="shelf-header">
+      <span class="shelf-label">Nuestra Tienda</span>
+      <h2 class="shelf-title">El Muro Verde</h2>
+      <p class="shelf-hint">Pasa el cursor sobre cada macetita para descubrir su personalidad</p>
+    </div>
+    <div class="shelf-container">
+      <div class="shelf-image-wrap" id="shelfWrap">
+        <img src="imagesMacetitas/muro.png" alt="Muro Verde" class="shelf-image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT FORM ============ -->
+  <section class="contact-section" id="contacto">
+    <div class="contact-bg"></div>
+    <div class="contact-bg-overlay"></div>
+    <div class="glass-form-card">
+      <h2 class="contact-title">Get Started</h2>
+      <p class="contact-subtitle">
+        Dejanos tu informacion y te contactaremos para ayudarte a encontrar la
+        macetita perfecta.
+      </p>
+      <form id="contactForm">
+        <div class="form-group">
+          <input type="text" id="nombre" placeholder=" " required />
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder=" " required />
+          <label for="email">Email</label>
+        </div>
+        <div class="form-group">
+          <textarea id="mensaje" placeholder=" " rows="4"></textarea>
+          <label for="mensaje">Mensaje</label>
+        </div>
+        <button type="submit" class="form-submit">Enviar</button>
+      </form>
+      <div class="form-success" id="formSuccess" style="display:none">
+        <div class="form-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <p class="form-success-text">Gracias! Te contactaremos pronto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <span class="nav-logo">Macetitas3D</span>
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#contacto">Contacto</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">2026 Macetitas3D. Hecho con amor y filamentos sostenibles.</p>
+      </div>
+    </div>
+  </footer>
+<script>
+    /* ============================================
+   MACETITAS 3D - JAVASCRIPT COMPLETO
+   ============================================ */
+
+// Productos
+const products = [
+  {id:1,name:'Pedro',desc:'Pedro es fantastico para regar tus plantas. Cuando pasas poco tiempo en casa, Pedro tiene un sistema para abastecer a tus plantas tipo hoja tal para que puedas despreocuparte.',tag:'Autorriego',img:'images/card-pot-pedro-v2.png'},
+  {id:2,name:'Luna',desc:'Luna adora la luz de la luna. Es perfecta para plantas que necesitan poca agua pero mucha paz. Su diseno geometrico refleja la luz de manera magica.',tag:'Luminoso',img:'images/card-pot-luna-v2.png'},
+  {id:3,name:'Roberto',desc:'Roberto es el fuerte de la familia. Su estructura ancha y robusta protege las raices mas sensibles. Ideal para plantas que necesitan espacio para crecer.',tag:'Robusto',img:'images/card-pot-roberto-v2.png'},
+  {id:4,name:'Mia',desc:'Mia es pura elegancia. Sus lineas suaves y curvas delicadas hacen que cualquier planta luzca como una obra de arte. Perfecta para espacios modernos.',tag:'Elegante',img:'images/card-pot-mia-v2.png'},
+  {id:5,name:'Coco',desc:'Coco es el aventurero. Con su sistema de drenaje inteligente, le encanta viajar de ventana en ventana. Ninguna planta se ahoga con Coco cerca.',tag:'Aventurero',img:'images/card-pot-coco-v2.png'},
+  {id:6,name:'Pepa',desc:'Pepa es la madre protectora. Su diseno tipo invernadero mantiene la humedad justa. Las plantas mas delicadas se sienten seguras con Pepa.',tag:'Protector',img:'images/card-pot-pepa-v2.png'},
+  {id:7,name:'Tito',desc:'Tito es el minimalista. Sin complicaciones, sin excesos. Lo esencial para que tu planta crezca feliz. A Tito le gusta la simplicidad y la funcionalidad.',tag:'Minimalista',img:'images/card-pot-tito-v2.png'},
+  {id:8,name:'Nina',desc:'Nina es la sonadora. Su diseno etereo con patrones de nubes crea un ambiente tranquilo. Las plantas que viven en Nina crecen con energia positiva.',tag:'Sonador',img:'images/card-pot-nina-v2.png'},
+  {id:9,name:'Zeta',desc:'Zeta es el futuro. Con su forma angular y moderna, representa la innovacion en impresion 3D. Para plantas que quieren estar a la vanguardia.',tag:'Futurista',img:'images/card-pot-zeta-v2.png'},
+];
+
+const shelfData = [
+  {id:1,name:'Pedro',tagline:'Autorriego inteligente',x:4,y:10,w:16,h:14},
+  {id:2,name:'Luna',tagline:'Refleja la luz de manera magica',x:28,y:14,w:13,h:14},
+  {id:3,name:'Roberto',tagline:'Fuerte y protector de raices',x:44,y:10,w:14,h:14},
+  {id:4,name:'Mia',tagline:'Elegancia pura',x:60,y:14,w:13,h:14},
+  {id:5,name:'Coco',tagline:'Drenaje inteligente',x:84,y:10,w:14,h:14},
+  {id:6,name:'Pepa',tagline:'Invernadero protector',x:6,y:28,w:14,h:16},
+  {id:7,name:'Tito',tagline:'Minimalismo funcional',x:72,y:22,w:14,h:16},
+  {id:8,name:'Nina',tagline:'Ambiente tranquilo',x:4,y:42,w:14,h:16},
+  {id:9,name:'Zeta',tagline:'Innovacion 3D',x:22,y:34,w:14,h:18},
+];
+
+/* ============================================
+   THREE.JS PARTICLES (HERO)
+   ============================================ */
+(function initParticles(){
+  const canvas = document.getElementById('particleCanvas');
+  if(!canvas) return;
+  
+  // Simple Three.js setup
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+  const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  
+  function resize(){
+    const w = canvas.parentElement.offsetWidth;
+    const h = canvas.parentElement.offsetHeight;
+    renderer.setSize(w,h);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  const COUNT = 200;
+  const positions = new Float32Array(COUNT*2);
+  const sizes = new Float32Array(COUNT);
+  
+  for(let i=0;i<COUNT;i++){
+    positions[i*2] = Math.random()*2-1;
+    positions[i*2+1] = Math.random()*2-1;
+    sizes[i] = 2+Math.random()*2;
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(positions,2));
+  geo.setAttribute('size',new THREE.BufferAttribute(sizes,1));
+
+  const mat = new THREE.ShaderMaterial({
+    transparent:true,depthWrite:false,
+    uniforms:{
+      uTime:{value:0},
+      uColor:{value:new THREE.Color(0x74c69d)},
+      uOpacity:{value:0.3},
+      uResolution:{value:new THREE.Vector2(canvas.offsetWidth,canvas.offsetHeight)},
+    },
+    vertexShader:`
+      attribute float size;
+      uniform float uTime;
+      uniform vec2 uResolution;
+      varying float vAlpha;
+      vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+      vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
+      vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
+      float snoise(vec2 v){
+        const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+        vec2 i=floor(v+dot(v,C.yy));
+        vec2 x0=v-i+dot(i,C.xx);
+        vec2 i1;
+        i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
+        vec4 x12=x0.xyxy+C.xxzz;
+        x12.xy-=i1;
+        i=mod289(i);
+        vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
+        vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+        m=m*m;m=m*m;
+        vec3 x=2.*fract(p*C.www)-1.;
+        vec3 h=abs(x)-0.5;
+        vec3 ox=floor(x+0.5);
+        vec3 a0=x-ox;
+        m*=1.79284291400159-0.85373472095314*(a0*a0+h*h);
+        vec3 g;
+        g.x=a0.x*x0.x+h.x*x0.y;
+        g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+        return 130.*dot(m,g);
+      }
+      void main(){
+        vec2 pos=position;
+        float nx=snoise(pos*3.+uTime*0.3)*0.015;
+        float ny=snoise(pos*3.+uTime*0.3+100.)*0.015;
+        pos.x+=nx;
+        pos.y+=ny+uTime*0.03*size*0.5;
+        pos.y=mod(pos.y+1.,2.)-1.;
+        pos.x=mod(pos.x+1.,2.)-1.;
+        vec2 pixelPos=pos*uResolution*0.5;
+        vec4 mvPosition=vec4(pixelPos/uResolution.x,0.,1.);
+        gl_Position=mvPosition;
+        gl_PointSize=size*(uResolution.y/800.);
+        float edgeFade=smoothstep(-0.9,-0.5,pos.y)*smoothstep(0.9,0.5,pos.y);
+        vAlpha=edgeFade*0.6;
+      }
+    `,
+    fragmentShader:`
+      uniform vec3 uColor;
+      uniform float uOpacity;
+      varying float vAlpha;
+      void main(){
+        float dist=length(gl_PointCoord-vec2(0.5));
+        float alpha=smoothstep(0.5,0.1,dist)*vAlpha*uOpacity;
+        gl_FragColor=vec4(uColor,alpha);
+      }
+    `,
+  });
+
+  const points = new THREE.Points(geo,mat);
+  scene.add(points);
+
+  const clock = new THREE.Clock();
+  let visible = true;
+  
+  const observer = new IntersectionObserver(([e])=>{visible=e.isIntersecting},{threshold:0.1});
+  observer.observe(canvas.parentElement);
+
+  function animate(){
+    requestAnimationFrame(animate);
+    if(!visible) return;
+    mat.uniforms.uTime.value = clock.getElapsedTime();
+    renderer.render(scene,camera);
+  }
+  animate();
+})();
+
+/* ============================================
+   HERO SLIDER
+   ============================================ */
+const slides = document.querySelectorAll('.hero-slide-img');
+const dotsContainer = document.getElementById('slideDots');
+let currentSlide = 0;
+
+slides.forEach((_,i)=>{
+  const dot = document.createElement('button');
+  dot.className = 'slider-dot' + (i===0?' active':'');
+  dot.onclick = ()=>goToSlide(i);
+  dotsContainer.appendChild(dot);
+});
+
+function goToSlide(idx){
+  slides[currentSlide].classList.remove('active');
+  dotsContainer.children[currentSlide].classList.remove('active');
+  currentSlide = idx;
+  slides[currentSlide].classList.add('active');
+  dotsContainer.children[currentSlide].classList.add('active');
+}
+
+document.getElementById('slideNext').onclick = ()=>goToSlide((currentSlide+1)%slides.length);
+document.getElementById('slidePrev').onclick = ()=>goToSlide((currentSlide-1+slides.length)%slides.length);
+
+/* ============================================
+   PRODUCT CARDS (DYNAMIC + FLIP)
+   ============================================ */
+const grid = document.getElementById('cardGrid');
+let flippedId = null;
+
+products.forEach((p,i)=>{
+  const floatDur = (3+(i%3)*0.3).toFixed(1);
+  const floatDel = (i*0.15).toFixed(2);
+  
+  const card = document.createElement('div');
+  card.className = 'card-wrap';
+  card.innerHTML = `
+    <div class="pot-box" style="animation:float ${floatDur}s ease-in-out ${floatDel}s infinite">
+      <img src="${p.img}" alt="${p.name}" class="pot-photo" id="pot-${p.id}">
+    </div>
+    <div class="card-flipper" id="card-${p.id}">
+      <div class="card-face card-front">
+        <div style="flex:1"></div>
+        <h3 class="card-name">${p.name}</h3>
+        <span class="card-tag">${p.tag}</span>
+      </div>
+      <div class="card-face card-back">
+        <h3 class="card-name">${p.name}</h3>
+        <p class="card-desc">${p.desc}</p>
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 5 19 9.8 19 13a4 4 0 0 1-2.4 3.6c.4.7.4 1.6 0 2.4a3 3 0 0 1-2.6 1.6h-.2a3 3 0 0 1-2.6-1.6c-.4-.8-.4-1.7 0-2.4A4 4 0 0 1 7 13c0-3.2 3.5-8 9.2-6.9A7 7 0 0 1 15 20"/></svg>
+      </div>
+    </div>
+  `;
+  card.onclick = ()=>toggleFlip(p.id);
+  grid.appendChild(card);
+});
+
+function toggleFlip(id){
+  const card = document.getElementById('card-'+id);
+  const pot = document.getElementById('pot-'+id);
+  if(flippedId === id){
+    card.classList.remove('flipped');
+    pot.classList.remove('flip');
+    flippedId = null;
+  }else{
+    if(flippedId !== null){
+      document.getElementById('card-'+flippedId)?.classList.remove('flipped');
+      document.getElementById('pot-'+flippedId)?.classList.remove('flip');
+    }
+    card.classList.add('flipped');
+    pot.classList.add('flip');
+    flippedId = id;
+  }
+}
+
+/* ============================================
+   MURO VERDE HOTSPOTS
+   ============================================ */
+const shelfWrap = document.getElementById('shelfWrap');
+shelfData.forEach(item=>{
+  const spot = document.createElement('div');
+  spot.className = 'shelf-hotspot';
+  spot.style.cssText = `left:${item.x}%;top:${item.y}%;width:${item.w}%;height:${item.h}%;`;
+  spot.innerHTML = `
+    <div class="shelf-tooltip">
+      <div class="shelf-tooltip-inner">
+        <p class="shelf-tooltip-name">${item.name}</p>
+        <p class="shelf-tooltip-tagline">${item.tagline}</p>
+      </div>
+    </div>
+  `;
+  shelfWrap.appendChild(spot);
+});
+
+/* ============================================
+   CONTACT FORM
+   ============================================ */
+document.getElementById('contactForm').onsubmit = function(e){
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+  setTimeout(()=>{
+    this.reset();
+    this.style.display = 'block';
+    document.getElementById('formSuccess').style.display = 'none';
+  },3000);
+};
+
+/* ============================================
+   NAVBAR SCROLL EFFECT
+   ============================================ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY > 80);
+});
+
+/* ============================================
+   SMOOTH SCROLL (nav links)
+   ============================================ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+const revealElements = document.querySelectorAll('.gallery-header, .card-wrap, .featured-inner, .shelf-container, .glass-form-card');
+
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+},{threshold:0.1});
+
+revealElements.forEach(el=>{
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(40px)';
+  el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  revealObserver.observe(el);
+});
+
+
+/* ============================================
+   LEAF INTRO - TYPEWRITER EFFECT
+   ============================================ */
+(function initTypewriter() {
+  const text = 'Macetitas 3D';
+  const el = document.getElementById('typewriterText');
+  const cursor = document.getElementById('typeCursor');
+  let i = 0;
+  
+  // Start after a small delay
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(interval);
+        // Hide cursor after 2 seconds
+        setTimeout(() => {
+          cursor.style.opacity = '0';
+          cursor.style.transition = 'opacity 0.5s ease';
+        }, 2000);
+      }
+    }, 150); // typing speed (ms per character)
+  }, 600); // initial delay
+  
+  // Set CSS rotation variables for the float animation
+  document.getElementById('leafOverText').style.setProperty('--rot', '-15deg');
+  document.getElementById('leafOverInsta').style.setProperty('--rot', '25deg');
+})();
+</script>
+  <script src="script.js"></script>
+</body>
+</html>
